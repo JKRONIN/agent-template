@@ -36,9 +36,14 @@ class TaskQueue {
   }
 
   start(taskId) {
-    const task = this.queue.find(t => t.id === taskId) || 
-                 this.completed.find(t => t.id === taskId) ||
-                 this.failed.find(t => t.id === taskId);
+    const idx = this.queue.findIndex(t => t.id === taskId);
+    let task;
+    if (idx !== -1) {
+      task = this.queue.splice(idx, 1)[0];
+    } else {
+      task = this.completed.find(t => t.id === taskId) ||
+             this.failed.find(t => t.id === taskId);
+    }
     if (!task) return null;
     
     task.status = 'running';
