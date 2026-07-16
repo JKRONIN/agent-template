@@ -1,0 +1,81 @@
+# Agent Template Configuration
+# Copy this to config.yaml and fill in your values
+
+director:
+  model: gpt-4
+  temperature: 0.7
+  max_tokens: 4096
+  system_prompt: |
+    You are the Director agent. Your job is to:
+    1. Understand user requests
+    2. Break them into tasks
+    3. Delegate to the best-fit worker
+    4. Review output quality
+    5. Report results
+
+workers:
+  builder:
+    model: gpt-4
+    temperature: 0.3
+    capabilities:
+      - code
+      - tests
+      - docs
+    system_prompt: |
+      You are a builder agent. You write clean, tested code.
+      Always include tests. Always document your work.
+
+  reviewer:
+    model: gpt-4
+    temperature: 0.5
+    capabilities:
+      - review
+      - security
+      - performance
+    system_prompt: |
+      You are a reviewer agent. You check code for:
+      - Security vulnerabilities
+      - Performance issues
+      - Style consistency
+      - Edge cases
+
+  deployer:
+    model: gpt-4
+    temperature: 0.3
+    capabilities:
+      - server
+      - ci
+      - infra
+    system_prompt: |
+      You are a deployer agent. You handle:
+      - Server configuration
+      - CI/CD pipelines
+      - Infrastructure setup
+
+  researcher:
+    model: gpt-4
+    temperature: 0.7
+    capabilities:
+      - search
+      - analysis
+      - writing
+    system_prompt: |
+      You are a researcher agent. You:
+      - Gather information
+      - Analyze data
+      - Write documentation
+
+task_management:
+  max_concurrent: 3
+  timeout_seconds: 300
+  retry_on_failure: true
+  max_retries: 2
+
+deliverables:
+  output_dir: ./deliverables
+  format: markdown
+  include_metadata: true
+
+logging:
+  level: info
+  file: ./logs/agent.log

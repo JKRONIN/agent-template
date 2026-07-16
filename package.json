@@ -1,0 +1,17 @@
+{
+  "name": "agent-template",
+  "version": "1.0.0",
+  "description": "Plug-and-play multi-agent orchestration system",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node src/test.js"
+  },
+  "keywords": ["ai", "agents", "orchestration", "multi-agent"],
+  "author": "JKRONIN",
+  "license": "MIT",
+  "dependencies": {
+    "yaml": "^2.3.0"
+  }
+}
